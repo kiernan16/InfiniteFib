@@ -17,7 +17,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var fibNum: CUnsignedLongLong = 0
     var numbers: [CUnsignedLongLong] = [0,1]
 
-//    let swiftBlogs = ["Ray Wenderlich", "NSHipster", "iOS Developer Tips", "Jameson Quave", "Natasha The Robot", "Coding Explorer", "That Thing In Swift", "Andrew Bancroft", "iAchieved.it", "Airspeed Velocity"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +25,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         
         while(numbers.count<25){
-//            self.nextFib()
-//            numbers.append(fibNum)
-//            //numbers += fibNum
-            
             self.appendFib()
         }
         
