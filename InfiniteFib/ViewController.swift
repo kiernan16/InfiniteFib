@@ -15,7 +15,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var alphaNum: CUnsignedLongLong = 0
     var betaNum: CUnsignedLongLong = 1
     var fibNum: CUnsignedLongLong = 0
-    var numbers: [CUnsignedLongLong] = [0,1]
+    var numbers: [CUnsignedLongLong] = [0]
+    var fibDirectionUP = true
+    var temp = 0
 
     
     override func viewDidLoad() {
@@ -32,17 +34,51 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
+    // MARK:  Fibonacci Methods
     func nextFib() -> Void {
-       // if((alphaNum + betaNum) < CUnsignedLongLong.max){
         if((CUnsignedLongLong.max - betaNum) > alphaNum){
             fibNum = alphaNum + betaNum
             alphaNum = betaNum
             betaNum = fibNum
+    
+        } else{ //Go back down
+            fibDirectionUP = false
+            betaNum = alphaNum
+            println("MAX NUMBER HIT. REVERSE")
         }
     }
     
+    func backFib() -> Void {
+        if(alphaNum > 0){
+            alphaNum = fibNum - betaNum
+            fibNum = betaNum
+            betaNum = alphaNum
+            if(fibNum >= 0){
+                alphaNum = fibNum - betaNum
+            } else{
+                alphaNum = 0
+            }
+        } else {
+            alphaNum = 0
+            betaNum = 1
+            //numbers.append(1)
+            fibNum = 0
+            fibDirectionUP = true
+            println("REACHED ZERO. REVERSE")
+        }
+        
+    }
+    
     func appendFib() -> Void {
-        self.nextFib()
+        
+        if(fibDirectionUP == true){
+            self.nextFib()
+        } else {
+            self.backFib()
+        }
+        if(fibNum == 1){
+            numbers.append(1)
+        }
         numbers.append(fibNum)
         
     }
@@ -54,7 +90,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        // return swiftBlogs.count
-        return 100
+        return 10000
         
     }
     

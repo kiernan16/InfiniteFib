@@ -20,10 +20,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="redraw" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="MZo-5d-qYN">
+                                    <tableViewCell contentMode="center" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="MZo-5d-qYN">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" tableViewCell="MZo-5d-qYN" id="MQe-JV-7PU">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MZo-5d-qYN" id="MQe-JV-7PU">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
