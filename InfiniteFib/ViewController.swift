@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: - Variables
     @IBOutlet var tableView: UITableView!
     
     var alphaNum: CUnsignedLongLong = 0
@@ -17,8 +18,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var fibNum: CUnsignedLongLong = 0
     var numbers: [CUnsignedLongLong] = [0]
     var fibDirectionUP = true
-    var temp = 0
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.delegate = self
         tableView.dataSource = self
         
-        while(numbers.count<25){
+        while(numbers.count<25){ //loads 25 fibonacci numbers to the 'numbers' array on load
             self.appendFib()
         }
         
@@ -35,7 +34,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // MARK:  Fibonacci Methods
-    func nextFib() -> Void {
+    func nextFib() -> Void { //Finds next Fibonacci number
+        
+        //***** LARGEST POSSIBLE FIBONACCI NUMBER ON IOS: 12200160415121876738 ******//
+        
         if((CUnsignedLongLong.max - betaNum) > alphaNum){
             fibNum = alphaNum + betaNum
             alphaNum = betaNum
@@ -48,7 +50,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func backFib() -> Void {
+    func backFib() -> Void { //Finds previous Fibonacci number
         if(alphaNum > 0){
             alphaNum = fibNum - betaNum
             fibNum = betaNum
@@ -61,14 +63,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             alphaNum = 0
             betaNum = 1
-            //numbers.append(1)
             fibNum = 0
+            
+            //Go back up
+            
             fibDirectionUP = true
             println("REACHED ZERO. REVERSE")
         }
         
     }
     
+    //Adds Fibonacci number to 'numbers' array
     func appendFib() -> Void {
         
         if(fibDirectionUP == true){
@@ -76,22 +81,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             self.backFib()
         }
-        if(fibNum == 1){
+        if(fibNum == 1){    //Adds the "extra" '1' for the series
             numbers.append(1)
         }
         numbers.append(fibNum)
         
     }
     
-    // MARK:  UITextFieldDelegate Methods
+    // MARK:  UITableViewDelegate Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       // return swiftBlogs.count
-        return 10000
-        
+       
+        return 100000 //Scrolls far enough
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -106,15 +110,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         self.appendFib()
         
-       // if((CUnsignedLongLong.max - betaNum) > alphaNum){
-            cell!.textLabel?.text = String(numbers[row])
-       // }
+        cell!.textLabel?.text = String(numbers[row])
         
         
         return cell!
     }
     
-    // MARK:  UITableViewDelegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
