@@ -192,11 +192,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if(numbers1[row] > 0){
            // cell!.textLabel?.text = String(format: "%g%04g", arguments: numbers1[row],numbers2[row])
             //cell!.textLabel?.text = String(format: "%g", arguments: numbers1[row])
-                cell!.textLabel?.text = String("\(numbers1[row])\(numbers2[row])")
+               // cell!.textLabel?.text = String("\(numbers1[row])\(numbers2[row])")
             //println(NSString(format:"%02i", i))
             //println(String(format: "a float number: %.5f", 1.0321))
             //cell!.textLabel?.text = NSString(format: "%ll%04ll", numbers1[row],numbers2[row]) as String
-           // cell!.textLabel?.text = String(NSString(format: "\(numbers1[row])%04llu", numbers2[row]))
+            cell!.textLabel?.text = String(NSString(format: "\(numbers1[row])%019llu", numbers2[row]))
             //"%04llu"
             
             } else {
