@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Variables
     @IBOutlet var tableView: UITableView!
     
-    var MAXPLACEHOLDER: CUnsignedLongLong = 10000000000000000000
+    let MAXPLACEHOLDER: CUnsignedLongLong = 10000000000000000000
     var fibAlpha: CUnsignedLongLong = 0
     var fibBeta: CUnsignedLongLong = 0
     var alpha1: CUnsignedLongLong = 0
@@ -97,22 +97,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
  
     
     // MARK:  UITableViewDelegate Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
         return 100000 //Scrolls far enough
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
-        
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? UITableViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value2, reuseIdentifier: cellIdentifier)
-        }        
+            cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: cellIdentifier)
+        }
         
         let row = indexPath.row
 
@@ -121,7 +120,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
        
             if(numbers1[row] > 0){
 
-                cell!.textLabel?.text = String(NSString(format: "\(numbers1[row])%019llu", numbers2[row]))
+                cell!.textLabel?.text = String(format: "\(numbers1[row])%019llu", numbers2[row])
             
             } else {
                 cell!.textLabel?.text = String(numbers2[row])
@@ -131,11 +130,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell!
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let row = indexPath.row
-        println("numbers1: \(numbers1[row])")
-        println("numbers2: \(numbers2[row])")
+        print("numbers1: \(numbers1[row])")
+        print("numbers2: \(numbers2[row])")
     }
 }
